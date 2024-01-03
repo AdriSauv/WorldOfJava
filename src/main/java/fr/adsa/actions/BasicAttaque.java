@@ -22,9 +22,10 @@ public class BasicAttaque implements IAttaque{
         int damage = 0;
         if (randInt <= this.chanceToucher){
             damage = this.degats;
-            System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " et lui inflige " + damage + " degats");
+            System.out.println(lanceur.getNom() + " attaque " + cible.getNom() +
+                    " avec " + this.nom + " et lui inflige " + this.degats + " degats");
         } else {
-            System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " mais rate son attaque");
+            System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " avec " + this.nom + " mais rate son attaque");
         }
         return damage;
     }
@@ -65,5 +66,16 @@ public class BasicAttaque implements IAttaque{
     @Override
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("BasicAttaque{");
+        sb.append("degats=").append(degats);
+        sb.append(", chanceToucher=").append(chanceToucher);
+        sb.append(", nom='").append(nom).append('\'');
+        sb.append(", description='").append(description).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

@@ -7,11 +7,12 @@ import fr.adsa.monde.Monde;
 public class Main {
     public static void main(String[] args) {
         Monde m = new Monde();
-        Personnage hero = m.createPersonnage();
-        m.afficherInfos(hero);
+        Personnage p = m.createPersonnage();
         Monstre monstre = m.createMonstre();
+        m.afficherInfos(p);
         m.afficherInfos(monstre);
 
-        m.combat(hero, monstre);
+        m.combat(p, monstre);
+
     }
 }

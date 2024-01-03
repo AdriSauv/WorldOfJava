@@ -32,4 +32,13 @@ public class Classe {
     public void setAttaques(List<IAttaque> attaques) {
         this.attaques = attaques;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Classe{");
+        sb.append("nom='").append(nom).append('\'');
+        sb.append(", attaques=").append(attaques);
+        sb.append('}');
+        return sb.toString();
+    }
 }

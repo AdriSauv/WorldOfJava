@@ -11,13 +11,17 @@ import fr.adsa.model.Personnage;
 import java.util.*;
 
 public class Monde {
+    static Scanner sc = new Scanner(System.in);
     public static Map<String, Classe> dictionnaire = new HashMap<>();
     public static String[] fName = {"Goblin", "Orc", "Troll", "Golem", "Dragon"};
     public static String[] lName = {"de feu", "de glace", "de terre", "de lave", "de foudre"};
 
     // creer des classes et les ajouter dans le dictionnaire
     public static Map<String, Classe> getDictionnaire(){
-        dictionnaire.put("Mage", new Mage());
+        if(dictionnaire.isEmpty()){
+            Classe mage = new Mage();
+            dictionnaire.put(mage.getNom(), mage);
+        }
         return dictionnaire;
     }
 
@@ -26,12 +30,16 @@ public class Monde {
     }
 
     public static Personnage createPersonnage() {
-        Scanner sc = new Scanner(System.in);
+        getDictionnaire();
         System.out.println("Veuillez saisir le nom du personnage : ");
         String nom = sc.nextLine();
-        System.out.println("Veuillez choisir une classe : ");
-
-        return new Personnage();
+        System.out.println("Veuillez choisir une classe parmis : ");
+        for (String key : dictionnaire.keySet()) {
+            System.out.println(key);
+        }
+        String classe = sc.nextLine();
+        Classe classeChoisie = getClasse(classe);
+        return new Personnage(nom, 100, classeChoisie);
     }
 
 
@@ -43,9 +51,7 @@ public class Monde {
 
     //Récupere les infos du personnage et les affiche
     public static void afficherInfos(Combattant combattant){
-        System.out.println("Nom : " + combattant.getNom());
-        System.out.println("Pdv : " + combattant.getPdv());
-        System.out.println("Degats : " + combattant.getDegats());
+        System.out.println(combattant);
     }
 
     //Creation d'une méthode combat qui prend en parametre un personnage et un monstre à tour de role

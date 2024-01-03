@@ -7,11 +7,20 @@ public abstract class Combattant implements ICombattant {
     public int pdv;
     public int degats;
 
+    public Combattant() {
+    }
+
+    public Combattant(String nom, int pdv) {
+        this.nom = nom;
+        this.pdv = pdv;
+    }
+
     public Combattant(String nom, int pdv, int degats) {
         this.nom = nom;
         this.pdv = pdv;
         this.degats = degats;
     }
+
 
     // methode attaquer qui utilise le getAttaque de la classe classe
     @Override
