@@ -1,6 +1,8 @@
 package fr.adsa.abstrait;
 
-public abstract class Combattant {
+import fr.adsa.interfaces.ICombattant;
+
+public abstract class Combattant implements ICombattant {
     public String nom;
     public int pdv;
     public int degats;
@@ -9,6 +11,19 @@ public abstract class Combattant {
         this.nom = nom;
         this.pdv = pdv;
         this.degats = degats;
+    }
+
+    @Override
+    public void attaquer(ICombattant cible) {
+        System.out.println(this.nom + " attaque " + cible.getNom());
+        cible.defendre(this.degats);
+        System.out.println(cible.getNom() + " a " + cible.getPdv() + " pdv");
+    }
+
+    @Override
+    public void defendre(int degats) {
+        System.out.println(this.nom + " se defend");
+        this.pdv -= degats;
     }
 
     public String getNom() {

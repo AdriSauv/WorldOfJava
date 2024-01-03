@@ -1,5 +1,6 @@
 package fr.adsa.monde;
 
+import fr.adsa.interfaces.ICombattant;
 import fr.adsa.model.Monstre;
 import fr.adsa.model.Personnage;
 
@@ -33,7 +34,7 @@ public class Monde {
     }
 
     //Creation d'une méthode combat qui prend en parametre un personnage et un monstre à tour de role
-    public static void combat(Personnage personnage, Monstre monstre) {
+    public static void combat(ICombattant personnage, ICombattant monstre) {
         while (personnage.getPdv() > 0 && monstre.getPdv() > 0) {
             boolean turn = new Random().nextBoolean();
             if (turn) {
