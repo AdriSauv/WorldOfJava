@@ -3,38 +3,38 @@ package fr.adsa.monde;
 import fr.adsa.abstrait.Combattant;
 import fr.adsa.actions.BasicAttaque;
 import fr.adsa.classes.Classe;
+import fr.adsa.classes.Mage;
 import fr.adsa.interfaces.ICombattant;
 import fr.adsa.model.Monstre;
 import fr.adsa.model.Personnage;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Monde {
+    public static Map<String, Classe> dictionnaire = new HashMap<>();
+    public static String[] fName = {"Goblin", "Orc", "Troll", "Golem", "Dragon"};
+    public static String[] lName = {"de feu", "de glace", "de terre", "de lave", "de foudre"};
 
-    //Liste de classes
-    public static Classe[] classes = {
-            new Classe("Guerrier", List.of(new BasicAttaque(10))),
-            new Classe("Mage", List.of(new BasicAttaque(10))),
-            new Classe("Archer", List.of(new BasicAttaque(10))),
-            new Classe("Voleur", List.of(new BasicAttaque(10)))
-    };
+    // creer des classes et les ajouter dans le dictionnaire
+    public static Map<String, Classe> getDictionnaire(){
+        dictionnaire.put("Mage", new Mage());
+        return dictionnaire;
+    }
+
+    public static Classe getClasse(String nom) {
+        return dictionnaire.get(nom);
+    }
+
     public static Personnage createPersonnage() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Veuillez saisir le nom du personnage : ");
         String nom = sc.nextLine();
         System.out.println("Veuillez choisir une classe : ");
-        for (int i = 0; i < classes.length; i++) {
-            System.out.println(i + " - " + classes[i].getNom());
-        }
-        int choix = sc.nextInt();
-        Classe classe = classes[choix];
-        return new Personnage(nom, 100, 10, classe);
+
+        return new Personnage();
     }
 
-    public static String[] fName = {"Goblin", "Orc", "Troll", "Golem", "Dragon"};
-    public static String[] lName = {"de feu", "de glace", "de terre", "de lave", "de foudre"};
+
 
     public static Monstre createMonstre() {
         String nom = fName[new Random().nextInt(fName.length)] + " " + lName[new Random().nextInt(lName.length)];

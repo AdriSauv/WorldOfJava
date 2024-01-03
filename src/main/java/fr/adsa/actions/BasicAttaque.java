@@ -6,10 +6,14 @@ import fr.adsa.interfaces.ICombattant;
 public class BasicAttaque implements IAttaque{
     public int degats;
     public double chanceToucher;
+    public String nom;
+    public String description;
 
-    public BasicAttaque(int degats){
+    public BasicAttaque(String nom, String description, int degats, double chanceToucher) {
         this.degats = degats;
-        this.chanceToucher = 90;
+        this.nom = nom;
+        this.description = description;
+        this.chanceToucher = chanceToucher;
     }
 
     @Override
@@ -25,33 +29,41 @@ public class BasicAttaque implements IAttaque{
         return damage;
     }
 
-    @Override
-    public String getNom() {
-        return null;
+    public int getDegats() {
+        return degats;
     }
 
-    @Override
-    public String getDescription() {
-        return null;
+    public void setDegats(int degats) {
+        this.degats = degats;
     }
 
     @Override
     public double getChanceToucher() {
-        return 0;
-    }
-
-    @Override
-    public void setNom(String nom) {
-
-    }
-
-    @Override
-    public void setDescription(String description) {
-
+        return chanceToucher;
     }
 
     @Override
     public void setChanceToucher(double chanceToucher) {
+        this.chanceToucher = chanceToucher;
+    }
 
+    @Override
+    public String getNom() {
+        return nom;
+    }
+
+    @Override
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
