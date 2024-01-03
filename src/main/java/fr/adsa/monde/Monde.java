@@ -1,19 +1,35 @@
 package fr.adsa.monde;
 
 import fr.adsa.actions.BasicAttaque;
+import fr.adsa.classes.Classe;
 import fr.adsa.interfaces.ICombattant;
 import fr.adsa.model.Monstre;
 import fr.adsa.model.Personnage;
 
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Monde {
+
+    //Liste de classes
+    public static Classe[] classes = {
+            new Classe("Guerrier", List.of(new BasicAttaque(10))),
+            new Classe("Mage", List.of(new BasicAttaque(10))),
+            new Classe("Archer", List.of(new BasicAttaque(10))),
+            new Classe("Voleur", List.of(new BasicAttaque(10)))
+    };
     public static Personnage createPersonnage() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Veuillez saisir le nom du personnage : ");
         String nom = sc.nextLine();
-        return new Personnage(nom, 100, 10);
+        System.out.println("Veuillez choisir une classe : ");
+        for (int i = 0; i < classes.length; i++) {
+            System.out.println(i + " - " + classes[i].getNom());
+        }
+        int choix = sc.nextInt();
+        Classe classe = classes[choix];
+        return new Personnage(nom, 100, 10, classe);
     }
 
     public static String[] fName = {"Goblin", "Orc", "Troll", "Golem", "Dragon"};
