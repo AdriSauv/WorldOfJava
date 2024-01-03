@@ -31,7 +31,7 @@ public class Monde {
         return dictionnaire.get(nom);
     }
 
-    public static Personnage createPersonnage() {
+    public static Personnage personnageFactory() {
         getDictionnaire();
         System.out.println("Veuillez saisir le nom du personnage : ");
         sc.nextLine();
@@ -46,7 +46,7 @@ public class Monde {
         return new Personnage(nom, 100, classeChoisie);
     }
 
-    public static Monstre createMonstre() {
+    public static Monstre monstreFactory() {
         String nom = fName[new Random().nextInt(fName.length)] + " " + lName[new Random().nextInt(lName.length)];
         return new Monstre(nom, 100, 10);
     }
@@ -73,10 +73,18 @@ public class Monde {
         }
     }
 
+    //Initialiser une liste de 15 monstres
+    public static void initMonstres(){
+        for(int i = 0; i < 30; i++){
+            monstres.add(monstreFactory());
+        }
+    }
+
     public static Groupe createMonstreGroupe(int nbMonstres) {
+        initMonstres();
         Groupe groupe = new Groupe();
         for (int i = 0; i < nbMonstres; i++) {
-            groupe.addCombattant(createMonstre());
+            groupe.addCombattant(monstreFactory());
         }
         return groupe;
     }
@@ -84,7 +92,8 @@ public class Monde {
     public static Groupe createPersonnageGroupe(int nbPersonnages) {
         Groupe groupe = new Groupe();
         for (int i = 0; i < nbPersonnages; i++) {
-            groupe.addCombattant(createPersonnage());
+            Personnage personnage = personnageFactory();
+            groupe.addCombattant(personnage);
         }
         return groupe;
     }
@@ -97,7 +106,7 @@ public class Monde {
         System.out.println("| 4 - Informations              |");
         System.out.println("| 5 - Quitter                   |");
         System.out.println("|-------------------------------|");
-        System.out.println("Faite votre choix : ");
+        System.out.println("Choix : ");
 
         int choix = sc.nextInt();
         switch (choix){
@@ -125,8 +134,8 @@ public class Monde {
     }
 
     public static void combat1v1(){
-        Personnage p = createPersonnage();
-        Monstre monstre = createMonstre();
+        Personnage p = personnageFactory();
+        Monstre monstre = monstreFactory();
         afficherInfos(p);
         afficherInfos(monstre);
         combat(p, monstre);
@@ -155,7 +164,7 @@ public class Monde {
     }
 
     public static void combat1vAll(){
-        Personnage p = createPersonnage();
+        Personnage p = personnageFactory();
         System.out.println("Combien de monstres voulez-vous créer ?");
         int nbMonstres = sc.nextInt();
         Groupe groupeMonstres = createMonstreGroupe(nbMonstres);

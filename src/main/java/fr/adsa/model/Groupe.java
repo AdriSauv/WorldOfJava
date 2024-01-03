@@ -2,11 +2,12 @@ package fr.adsa.model;
 
 import fr.adsa.interfaces.ICombattant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Groupe implements ICombattant {
 
-    private List<ICombattant> combattants;
+    private List<ICombattant> combattants = new ArrayList<>();
 
     //méthode addCombattant qui ajoute un combattant au groupe
     public void addCombattant(ICombattant combattant) {
