@@ -11,5 +11,7 @@ public class Main {
         m.afficherInfos(hero);
         Monstre monstre = m.createMonstre();
         m.afficherInfos(monstre);
+
+        m.combat(hero, monstre);
     }
 }

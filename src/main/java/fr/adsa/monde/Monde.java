@@ -31,4 +31,25 @@ public class Monde {
     public static void afficherInfos(Monstre monstre) {
         System.out.println("Le monstre " + monstre.getNom() + " a " + monstre.getPdv() + " pdv et " + monstre.getDegats() + " de degats");
     }
+
+    //Creation d'une méthode combat qui prend en parametre un personnage et un monstre à tour de role
+    public static void combat(Personnage personnage, Monstre monstre) {
+        while (personnage.getPdv() > 0 && monstre.getPdv() > 0) {
+            boolean turn = new Random().nextBoolean();
+            if (turn) {
+                System.out.println("Le personnage attaque le monstre");
+                monstre.setPdv(monstre.getPdv() - personnage.getDegats());
+                System.out.println("Le monstre a " + monstre.getPdv() + " pdv");
+            } else {
+                System.out.println("Le monstre attaque le personnage");
+                personnage.setPdv(personnage.getPdv() - monstre.getDegats());
+                System.out.println("Le personnage a " + personnage.getPdv() + " pdv");
+            }
+        }
+        if (personnage.getPdv() <= 0) {
+            System.out.println("Le personnage est mort");
+        } else {
+            System.out.println("Le monstre est mort");
+        }
+    }
 }
