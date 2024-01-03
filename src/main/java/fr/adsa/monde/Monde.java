@@ -13,7 +13,7 @@ public class Monde {
     }
 
     //Récupere les infos du personnage et les affiche
-    public static void afficherInfosPersonnage(Personnage personnage) {
+    public static void afficherInfos(Personnage personnage) {
         System.out.println("Le personnage " + personnage.getNom() + " a " + personnage.getPdv() + " pdv et " + personnage.getDegats() + " de degats");
     }
 }
