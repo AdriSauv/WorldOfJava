@@ -98,6 +98,10 @@ public class Monde {
         return groupe;
     }
 
+    public static int randomInt(int borneMax) {
+        return new Random().nextInt(borneMax);
+    }
+
     public static void menu(){
         System.out.println("|------------ Menu ------------|");
         System.out.println("| 1 - Combat 1v1                |");
