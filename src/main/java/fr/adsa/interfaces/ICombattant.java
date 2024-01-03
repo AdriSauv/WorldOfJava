@@ -12,4 +12,6 @@ public interface ICombattant {
     public void setDegats(int degats);
     public void setPdv(int pdv);
 
+    public boolean estMort();
+
 }

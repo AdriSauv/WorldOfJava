@@ -42,8 +42,6 @@ public class Monde {
         return new Personnage(nom, 100, classeChoisie);
     }
 
-
-
     public static Monstre createMonstre() {
         String nom = fName[new Random().nextInt(fName.length)] + " " + lName[new Random().nextInt(lName.length)];
         return new Monstre(nom, 100, 10);

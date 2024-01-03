@@ -67,4 +67,8 @@ public abstract class Combattant implements ICombattant {
         sb.append('}');
         return sb.toString();
     }
+
+    public boolean estMort(){
+        return this.pdv <= 0;
+    }
 }
