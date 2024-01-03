@@ -1,5 +1,6 @@
 package fr.adsa.monde;
 
+import fr.adsa.abstrait.Combattant;
 import fr.adsa.actions.BasicAttaque;
 import fr.adsa.classes.Classe;
 import fr.adsa.interfaces.ICombattant;
@@ -41,17 +42,14 @@ public class Monde {
     }
 
     //Récupere les infos du personnage et les affiche
-    public static void afficherInfos(Personnage personnage) {
-        System.out.println("Le personnage " + personnage.getNom() + " a " + personnage.getPdv() + " pdv et " + personnage.getDegats() + " de degats");
-    }
-
-    //Récupere les infos du monstre et les affiche
-    public static void afficherInfos(Monstre monstre) {
-        System.out.println("Le monstre " + monstre.getNom() + " a " + monstre.getPdv() + " pdv et " + monstre.getDegats() + " de degats");
+    public static void afficherInfos(Combattant combattant){
+        System.out.println("Nom : " + combattant.getNom());
+        System.out.println("Pdv : " + combattant.getPdv());
+        System.out.println("Degats : " + combattant.getDegats());
     }
 
     //Creation d'une méthode combat qui prend en parametre un personnage et un monstre à tour de role
-    public static void combat(ICombattant personnage, ICombattant monstre) {
+    public static void combat(Personnage personnage, Monstre monstre) {
         while (personnage.getPdv() > 0 && monstre.getPdv() > 0) {
             boolean turn = new Random().nextBoolean();
             if (turn) {
@@ -61,9 +59,9 @@ public class Monde {
             }
         }
         if (personnage.getPdv() <= 0) {
-            System.out.println("Le personnage est mort");
+            System.out.println( personnage.getNom() + " est mort. " + monstre.getNom() + " a gagné");
         } else {
-            System.out.println("Le monstre est mort");
+            System.out.println( monstre.getNom() + " est mort. " + personnage.getNom() + " a gagné");
         }
     }
 }

@@ -15,16 +15,14 @@ public class BasicAttaque implements IAttaque{
     @Override
     public int lancerAttaque(ICombattant lanceur, ICombattant cible) {
         int randInt = (int) (Math.random() * 100);
-        if(randInt < this.chanceToucher){
-            System.out.println(lanceur.getNom() + " attaque " + cible.getNom());
-            cible.defendre(this.degats);
-            System.out.println(cible.getNom() + " a " + cible.getPdv() + " pdv");
-            return this.degats;
+        int damage = 0;
+        if (randInt <= this.chanceToucher){
+            damage = this.degats;
+            System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " et lui inflige " + damage + " degats");
+        } else {
+            System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " mais rate son attaque");
         }
-        else{
-            System.out.println(lanceur.getNom() + " rate son attaque");
-            return 0;
-        }
+        return damage;
     }
 
     @Override

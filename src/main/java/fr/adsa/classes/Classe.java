@@ -3,12 +3,13 @@ package fr.adsa.classes;
 import fr.adsa.actions.BasicAttaque;
 import fr.adsa.interfaces.IAttaque;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Classe {
     public String nom;
     // liste d'attaque de la classe, qui comprend juste BasicAttaque pour l'instant
-    public List<IAttaque> attaques = List.of(new BasicAttaque(10));
+    public List<IAttaque> attaques = new ArrayList<>();
 
     public Classe(String nom, List<IAttaque> attaques) {
         this.nom = nom;

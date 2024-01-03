@@ -13,16 +13,15 @@ public abstract class Combattant implements ICombattant {
         this.degats = degats;
     }
 
+    // methode attaquer qui utilise le getAttaque de la classe classe
     @Override
     public void attaquer(ICombattant cible) {
-        System.out.println(this.nom + " attaque " + cible.getNom());
         cible.defendre(this.degats);
+        System.out.println(this.nom + " attaque " + cible.getNom() + " et lui inflige " + this.degats + " degats");
         System.out.println(cible.getNom() + " a " + cible.getPdv() + " pdv");
     }
 
-    @Override
-    public void defendre(int degats) {
-        System.out.println(this.nom + " se defend");
+    public void defendre(int degats){
         this.pdv -= degats;
     }
 
