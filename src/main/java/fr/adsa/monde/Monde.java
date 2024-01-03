@@ -38,13 +38,9 @@ public class Monde {
         while (personnage.getPdv() > 0 && monstre.getPdv() > 0) {
             boolean turn = new Random().nextBoolean();
             if (turn) {
-                System.out.println("Le personnage attaque le monstre");
-                monstre.setPdv(monstre.getPdv() - personnage.getDegats());
-                System.out.println("Le monstre a " + monstre.getPdv() + " pdv");
+                personnage.attaquer(monstre);
             } else {
-                System.out.println("Le monstre attaque le personnage");
-                personnage.setPdv(personnage.getPdv() - monstre.getDegats());
-                System.out.println("Le personnage a " + personnage.getPdv() + " pdv");
+                monstre.attaquer(personnage);
             }
         }
         if (personnage.getPdv() <= 0) {
