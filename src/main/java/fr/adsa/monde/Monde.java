@@ -86,4 +86,107 @@ public class Monde {
         }
         return groupe;
     }
+
+    public static void menu(){
+        System.out.println("------------ Menu ------------");
+        System.out.println("Choisir une option : ");
+        System.out.println("1: Lancer un 1v1");
+        System.out.println("2: Lancer un combat de groupe");
+        System.out.println("3: One versus All");
+        System.out.println("4: Informations");
+        System.out.println("5: Quitter");
+
+        int choix = sc.nextInt();
+        switch (choix){
+            case 1:
+                combat1v1();
+                break;
+            case 2:
+                combatGroupe();
+                break;
+            case 3:
+                combat1vAll();
+                break;
+            case 4:
+                informations();
+                break;
+            case 5:
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Veuillez saisir un nombre entre 1 et 5");
+                menu();
+                break;
+        }
+
+    }
+
+    public static void combat1v1(){
+        Personnage p = createPersonnage();
+        Monstre monstre = createMonstre();
+        afficherInfos(p);
+        afficherInfos(monstre);
+        combat(p, monstre);
+    }
+
+    public static void combatGroupe(){
+        System.out.println("Combien de personnages voulez-vous créer ?");
+        int nbPersonnages = sc.nextInt();
+        Groupe groupePersonnages = createPersonnageGroupe(nbPersonnages);
+        System.out.println("Combien de monstres voulez-vous créer ?");
+        int nbMonstres = sc.nextInt();
+        Groupe groupeMonstres = createMonstreGroupe(nbMonstres);
+        while (!groupePersonnages.estMort() && !groupeMonstres.estMort()) {
+            boolean turn = new Random().nextBoolean();
+            if (turn) {
+                groupePersonnages.attaquer(groupeMonstres);
+            } else {
+                groupeMonstres.attaquer(groupePersonnages);
+            }
+        }
+        if (groupePersonnages.estMort()) {
+            System.out.println("Les personnages sont morts. Les monstres ont gagné");
+        } else {
+            System.out.println("Les monstres sont morts. Les personnages ont gagné");
+        }
+    }
+
+    public static void combat1vAll(){
+        Personnage p = createPersonnage();
+        System.out.println("Combien de monstres voulez-vous créer ?");
+        int nbMonstres = sc.nextInt();
+        Groupe groupeMonstres = createMonstreGroupe(nbMonstres);
+        afficherInfos(p);
+        while (!p.estMort() && !groupeMonstres.estMort()) {
+            boolean turn = new Random().nextBoolean();
+            if (turn) {
+                p.attaquer(groupeMonstres);
+            } else {
+                groupeMonstres.attaquer(p);
+            }
+        }
+        if (p.estMort()) {
+            System.out.println("Le personnage est mort. Les monstres ont gagné");
+        } else {
+            System.out.println("Les monstres sont morts. Le personnage a gagné");
+        }
+    }
+
+    /**
+     * Affiche les informations sur les classes disponibles
+     * les attaques disponibles selon la classe
+     * et les monstres
+     * @return void
+     */
+    public static void informations(){
+        System.out.println("Informations : ");
+        System.out.println("Classes disponibles : ");
+        for (String key : dictionnaire.keySet()) {
+            System.out.println(key);
+        }
+        System.out.println("Attaques disponibles : ");
+        for(String key : dictionnaire.keySet()){
+            System.out.println(key + " : " + dictionnaire.get(key).getAttaques());
+        }
+    }
 }
