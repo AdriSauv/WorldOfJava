@@ -1,4 +1,4 @@
-package fr.adsa;
+package fr.adsa.actions;
 
 import fr.adsa.interfaces.IAttaque;
 import fr.adsa.interfaces.ICombattant;
@@ -7,13 +7,13 @@ public class BasicAttaque implements IAttaque{
     public int degats;
     public double chanceToucher;
 
-    public BasicAttaque(int degats, double chanceToucher){
+    public BasicAttaque(int degats){
         this.degats = degats;
-        this.chanceToucher = chanceToucher;
+        this.chanceToucher = 90;
     }
 
     @Override
-    public int LancerAttaque(ICombattant lanceur, ICombattant cible) {
+    public int lancerAttaque(ICombattant lanceur, ICombattant cible) {
         int randInt = (int) (Math.random() * 100);
         if(randInt < this.chanceToucher){
             System.out.println(lanceur.getNom() + " attaque " + cible.getNom());

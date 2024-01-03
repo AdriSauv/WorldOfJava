@@ -1,5 +1,6 @@
 package fr.adsa.monde;
 
+import fr.adsa.actions.BasicAttaque;
 import fr.adsa.interfaces.ICombattant;
 import fr.adsa.model.Monstre;
 import fr.adsa.model.Personnage;
