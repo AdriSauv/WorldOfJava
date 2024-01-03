@@ -26,6 +26,11 @@ public class Personnage extends Combattant {
         System.out.println(cible.getNom() + " a " + cible.getPdv() + " pdv");
     }
 
+    @Override
+    public boolean estMort() {
+        return this.pdv <= 0;
+    }
+
     public Classe getClasse() {
         return classe;
     }

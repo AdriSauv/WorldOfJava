@@ -15,12 +15,18 @@ public class Groupe implements ICombattant {
 
     @Override
     public void attaquer(ICombattant cible) {
-
+        //choisi un combattant au hasard
+        int random = (int) (Math.random() * combattants.size());
+        ICombattant combattant = combattants.get(random);
+        combattant.attaquer(cible);
     }
 
     @Override
     public void defendre(int degats) {
-
+        //choisi un combattant au hasard
+        int random = (int) (Math.random() * combattants.size());
+        ICombattant combattant = combattants.get(random);
+        combattant.defendre(degats);
     }
 
     @Override
@@ -56,6 +62,11 @@ public class Groupe implements ICombattant {
     //methode est mort qui verifie si tous les combattants du groupe sont morts
     @Override
     public boolean estMort() {
-        return false;
+        for(ICombattant combattant : combattants){
+            if(!combattant.estMort()){
+                return false;
+            }
+        }
+        return true;
     }
 }
