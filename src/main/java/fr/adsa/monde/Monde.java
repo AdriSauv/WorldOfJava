@@ -5,6 +5,7 @@ import fr.adsa.actions.BasicAttaque;
 import fr.adsa.classes.Classe;
 import fr.adsa.classes.Mage;
 import fr.adsa.interfaces.ICombattant;
+import fr.adsa.model.Groupe;
 import fr.adsa.model.Monstre;
 import fr.adsa.model.Personnage;
 
@@ -13,6 +14,7 @@ import java.util.*;
 public class Monde {
     static Scanner sc = new Scanner(System.in);
     public static Map<String, Classe> dictionnaire = new HashMap<>();
+    public static List<Monstre> monstres = new ArrayList<>();
     public static String[] fName = {"Goblin", "Orc", "Troll", "Golem", "Dragon"};
     public static String[] lName = {"de feu", "de glace", "de terre", "de lave", "de foudre"};
 
@@ -33,7 +35,7 @@ public class Monde {
         getDictionnaire();
         System.out.println("Veuillez saisir le nom du personnage : ");
         String nom = sc.nextLine();
-        System.out.println("Veuillez choisir une classe parmis : ");
+        System.out.println("Veuillez choisir une classe : ");
         for (String key : dictionnaire.keySet()) {
             System.out.println(key);
         }
@@ -62,10 +64,26 @@ public class Monde {
                 monstre.attaquer(personnage);
             }
         }
-        if (personnage.getPdv() <= 0) {
+        if (personnage.estMort()) {
             System.out.println( personnage.getNom() + " est mort. " + monstre.getNom() + " a gagné");
         } else {
             System.out.println( monstre.getNom() + " est mort. " + personnage.getNom() + " a gagné");
         }
+    }
+
+    public static Groupe createMonstreGroupe(int nbMonstres) {
+        Groupe groupe = new Groupe();
+        for (int i = 0; i < nbMonstres; i++) {
+            groupe.addCombattant(createMonstre());
+        }
+        return groupe;
+    }
+
+    public static Groupe createPersonnageGroupe(int nbPersonnages) {
+        Groupe groupe = new Groupe();
+        for (int i = 0; i < nbPersonnages; i++) {
+            groupe.addCombattant(createPersonnage());
+        }
+        return groupe;
     }
 }
