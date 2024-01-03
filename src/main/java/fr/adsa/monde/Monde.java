@@ -34,7 +34,9 @@ public class Monde {
     public static Personnage createPersonnage() {
         getDictionnaire();
         System.out.println("Veuillez saisir le nom du personnage : ");
+        sc.nextLine();
         String nom = sc.nextLine();
+
         System.out.println("Veuillez choisir une classe : ");
         for (String key : dictionnaire.keySet()) {
             System.out.println(key);
@@ -88,13 +90,14 @@ public class Monde {
     }
 
     public static void menu(){
-        System.out.println("------------ Menu ------------");
-        System.out.println("Choisir une option : ");
-        System.out.println("1: Lancer un 1v1");
-        System.out.println("2: Lancer un combat de groupe");
-        System.out.println("3: One versus All");
-        System.out.println("4: Informations");
-        System.out.println("5: Quitter");
+        System.out.println("|------------ Menu ------------|");
+        System.out.println("| 1 - Combat 1v1                |");
+        System.out.println("| 2 - Combat de groupe          |");
+        System.out.println("| 3 - Combat 1vAll              |");
+        System.out.println("| 4 - Informations              |");
+        System.out.println("| 5 - Quitter                   |");
+        System.out.println("|-------------------------------|");
+        System.out.println("Faite votre choix : ");
 
         int choix = sc.nextInt();
         switch (choix){
