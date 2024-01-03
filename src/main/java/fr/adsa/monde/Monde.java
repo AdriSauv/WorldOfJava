@@ -11,4 +11,9 @@ public class Monde {
         String nom = sc.nextLine();
         return new Personnage(nom, 100, 10);
     }
+
+    //Récupere les infos du personnage et les affiche
+    public static void afficherInfosPersonnage(Personnage personnage) {
+        System.out.println("Le personnage " + personnage.getNom() + " a " + personnage.getPdv() + " pdv et " + personnage.getDegats() + " de degats");
+    }
 }
