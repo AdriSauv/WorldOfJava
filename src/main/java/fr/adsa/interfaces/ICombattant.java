@@ -1,5 +1,9 @@
 package fr.adsa.interfaces;
 
+import fr.adsa.classes.Classe;
+
+import java.util.Map;
+
 public interface ICombattant {
     public void attaquer(ICombattant cible);
     public void defendre(int degats);
@@ -11,7 +15,5 @@ public interface ICombattant {
     public void setNom(String nom);
     public void setDegats(int degats);
     public void setPdv(int pdv);
-
     public boolean estMort();
-
 }

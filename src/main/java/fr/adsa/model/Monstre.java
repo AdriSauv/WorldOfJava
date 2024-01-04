@@ -9,6 +9,6 @@ public class Monstre extends Combattant {
 
     @Override
     public boolean estMort() {
-        return false;
+        return this.pdv <= 0;
     }
 }

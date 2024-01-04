@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Classe {
     public String nom;
-    // liste d'attaque de la classe, qui comprend juste BasicAttaque pour l'instant
     public List<IAttaque> attaques = new ArrayList<>();
 
     public Classe(String nom, List<IAttaque> attaques) {
@@ -24,9 +23,9 @@ public class Classe {
         this.nom = nom;
     }
 
-    // recupere une attaque de la liste d'attaque aléatoirement
-    public IAttaque getAttaques() {
-        return attaques.get((int) (Math.random() * attaques.size()));
+    // Recupere les attaques de la classe
+    public List<IAttaque> getAttaques() {
+        return attaques;
     }
 
     public void setAttaques(List<IAttaque> attaques) {

@@ -4,12 +4,15 @@ import fr.adsa.abstrait.Combattant;
 import fr.adsa.actions.BasicAttaque;
 import fr.adsa.classes.Classe;
 import fr.adsa.classes.Mage;
+import fr.adsa.classes.Voleur;
 import fr.adsa.interfaces.ICombattant;
 import fr.adsa.model.Groupe;
 import fr.adsa.model.Monstre;
 import fr.adsa.model.Personnage;
 
 import java.util.*;
+
+import static java.lang.Thread.sleep;
 
 public class Monde {
     static Scanner sc = new Scanner(System.in);
@@ -23,6 +26,8 @@ public class Monde {
         if(dictionnaire.isEmpty()){
             Classe mage = new Mage();
             dictionnaire.put(mage.getNom(), mage);
+            Classe voleur = new Voleur();
+            dictionnaire.put(voleur.getNom(), voleur);
         }
         return dictionnaire;
     }
@@ -51,19 +56,22 @@ public class Monde {
         return new Monstre(nom, 100, 10);
     }
 
-    //Récupere les infos du personnage et les affiche
+    //Récupere les infos du personnage et les affiches
     public static void afficherInfos(Combattant combattant){
         System.out.println(combattant);
     }
 
     //Creation d'une méthode combat qui prend en parametre un personnage et un monstre à tour de role
-    public static void combat(Personnage personnage, Monstre monstre) {
-        while (personnage.getPdv() > 0 && monstre.getPdv() > 0) {
-            boolean turn = new Random().nextBoolean();
-            if (turn) {
-                personnage.attaquer(monstre);
+    public static void combat(Personnage personnage, Monstre monstre) throws InterruptedException {
+        while (!personnage.estMort() && !monstre.estMort()) {
+            personnage.attaquer(monstre);
+            sleep(2000);
+            // check si le monstre est mort
+            if (monstre.estMort()) {
+                break;
             } else {
                 monstre.attaquer(personnage);
+                sleep(2000);
             }
         }
         if (personnage.estMort()) {
@@ -102,7 +110,7 @@ public class Monde {
         return new Random().nextInt(borneMax);
     }
 
-    public static void menu(){
+    public static void menu() throws InterruptedException {
         System.out.println("|------------ Menu ------------|");
         System.out.println("| 1 - Combat 1v1                |");
         System.out.println("| 2 - Combat de groupe          |");
@@ -137,7 +145,7 @@ public class Monde {
 
     }
 
-    public static void combat1v1(){
+    public static void combat1v1() throws InterruptedException {
         Personnage p = personnageFactory();
         Monstre monstre = monstreFactory();
         afficherInfos(p);

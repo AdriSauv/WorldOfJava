@@ -4,6 +4,8 @@ import fr.adsa.abstrait.Combattant;
 import fr.adsa.classes.Classe;
 import fr.adsa.interfaces.ICombattant;
 
+import java.util.Scanner;
+
 /**
  * classe abstraite Personnage qui contient un nom, des pdv, des degats
  */
@@ -22,8 +24,15 @@ public class Personnage extends Combattant {
 
     @Override
     public void attaquer(ICombattant cible) {
-        cible.defendre(this.classe.getAttaques().lancerAttaque(this, cible));
-        System.out.println(cible.getNom() + " a " + cible.getPdv() + " pdv");
+        Scanner sc = new Scanner(System.in);
+        int choix = 0;
+        System.out.println("Veuillez choisir une attaque : ");
+        for (int i = 0; i < classe.getAttaques().size(); i++) {
+            System.out.println(i + " - " + classe.getAttaques().get(i).getNom());
+        }
+        choix = sc.nextInt();
+        int degats = classe.getAttaques().get(choix).lancerAttaque(this, cible);
+        cible.setPdv(cible.getPdv() - degats);
     }
 
     @Override
