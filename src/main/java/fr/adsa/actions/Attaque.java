@@ -40,7 +40,8 @@ public class Attaque implements IAttaque{
             damage = this.degats;
             System.out.println(lanceur.getNom() + " attaque " + cible.getNom() +
                     " avec " + this.nom + " et lui inflige " + this.degats + " degats");
-            System.out.println(cible.getNom() + " a " + (cible.getPdv()-damage) + " pdv");
+            cible.defendre(this.degats);
+            System.out.println(cible.getNom() + " a " + (cible.getPdv()) + " pdv");
         } else {
             System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " avec " + this.nom + " mais rate son attaque");
         }
