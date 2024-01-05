@@ -39,32 +39,43 @@ public class Attaque implements IAttaque{
 
     @Override
     public int lancerAttaque(ICombattant lanceur, ICombattant cible) {
-        int randInt = (int) (Math.random() * 100);
-        int damage;
-
-        if (randInt <= this.chanceToucher) {
-            double randomCrit = Math.random() * 100;
-
-            if (randomCrit <= lanceur.getCrit()) {
-                // Critical hit
-                damage = (int) (this.degats * (1 + lanceur.getCritDamage() / 100));
-                System.out.println("Coup critique !");
-            } else {
-                // Normal hit
-                damage = this.degats;
-            }
-
-            System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " avec " + this.nom + " et inflige " + damage + " degats");
-            cible.defendre(damage);
-            System.out.println(cible.getNom() + " a " + cible.getPdv() + " pdv");
+        if (toucheAttaque()) {
+            int damage = calculerDegats(lanceur);
+            afficherResultat(lanceur, cible, damage);
+            return damage;
         } else {
-            // Missed hit
-            System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " avec " + this.nom + " mais rate son attaque");
-            damage = 0; // Set damage to 0 for a missed hit
+            afficherRate(lanceur, cible);
+            return 0;
         }
-
-        return damage;
     }
+
+    private boolean toucheAttaque() {
+        int randInt = (int) (Math.random() * 100);
+        return randInt <= this.chanceToucher;
+    }
+
+    private int calculerDegats(ICombattant lanceur) {
+        double randomCrit = Math.random() * 100;
+        if (randomCrit <= lanceur.getCrit()) {
+            // Critical hit
+            System.out.println("Coup critique !");
+            return (int) (this.degats * (1 + lanceur.getCritDamage() / 100));
+        } else {
+            // Normal hit
+            return this.degats;
+        }
+    }
+
+    private void afficherResultat(ICombattant lanceur, ICombattant cible, int damage) {
+        System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " avec " + this.nom + " et inflige " + damage + " degats");
+        cible.defendre(damage);
+        System.out.println(cible.getNom() + " a " + cible.getPdv() + " pdv");
+    }
+
+    private void afficherRate(ICombattant lanceur, ICombattant cible) {
+        System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " avec " + this.nom + " mais rate son attaque");
+    }
+
 
 
 
