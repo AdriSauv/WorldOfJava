@@ -1,6 +1,5 @@
 package fr.adsa.classes;
 
-import fr.adsa.actions.BasicAttaque;
 import fr.adsa.interfaces.IAttaque;
 
 import java.util.ArrayList;

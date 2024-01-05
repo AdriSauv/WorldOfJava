@@ -1,11 +1,9 @@
 package fr.adsa.monde;
 
 import fr.adsa.abstrait.Combattant;
-import fr.adsa.actions.BasicAttaque;
 import fr.adsa.classes.Classe;
 import fr.adsa.classes.Mage;
 import fr.adsa.classes.Voleur;
-import fr.adsa.interfaces.ICombattant;
 import fr.adsa.model.Groupe;
 import fr.adsa.model.Monstre;
 import fr.adsa.model.Personnage;

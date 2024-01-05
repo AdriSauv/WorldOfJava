@@ -24,6 +24,7 @@ public class Groupe implements ICombattant {
         ICombattant combattant = combattants.get(Monde.randomInt(combattants.size()));
         return combattant;
     }
+
     public void attaquerGroupe(Groupe groupeCible){
         ICombattant cible = groupeCible.defendre();
         ICombattant attaquant = this.attaquer();
@@ -33,6 +34,7 @@ public class Groupe implements ICombattant {
             attaquant = (Monstre) attaquant;
         }
     }
+
     @Override
     public void attaquer(ICombattant cible) {
         //choisi un combattant au hasard
@@ -64,16 +66,25 @@ public class Groupe implements ICombattant {
         return 0;
     }
 
+    /**
+     * @param nom
+     */
     @Override
     public void setNom(String nom) {
 
     }
 
+    /**
+     * @param degats
+     */
     @Override
     public void setDegats(int degats) {
 
     }
 
+    /**
+     * @param pdv
+     */
     @Override
     public void setPdv(int pdv) {
 

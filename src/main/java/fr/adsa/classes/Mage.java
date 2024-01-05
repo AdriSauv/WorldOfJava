@@ -1,6 +1,6 @@
 package fr.adsa.classes;
 
-import fr.adsa.actions.BasicAttaque;
+import fr.adsa.actions.Attaque;
 import fr.adsa.interfaces.IAttaque;
 
 import java.util.ArrayList;
@@ -13,11 +13,11 @@ public class Mage extends Classe{
 
     private static List<IAttaque> attaques(){
         List<IAttaque> attaques = new ArrayList<>();
-        BasicAttaque eclair = new BasicAttaque("Eclair", 13, 80);
+        Attaque eclair = new Attaque("Eclair", 13, 80);
         attaques.add(eclair);
-        BasicAttaque bouleDeFeu = new BasicAttaque("Boule de feu", 15, 70);
+        Attaque bouleDeFeu = new Attaque("Boule de feu", 15, 70);
         attaques.add(bouleDeFeu);
-        BasicAttaque armageddon = new BasicAttaque("Armageddon", 100, 10);
+        Attaque armageddon = new Attaque("Armageddon", 100, 10);
         attaques.add(armageddon);
         return attaques;
     }

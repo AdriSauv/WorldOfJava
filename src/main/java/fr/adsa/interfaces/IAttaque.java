@@ -8,4 +8,6 @@ public interface IAttaque {
     public double getChanceToucher();
     public void setNom(String nom);
     public void setChanceToucher(double chanceToucher);
+    public void setDegats(int degats);
+    public int getDegats();
 }

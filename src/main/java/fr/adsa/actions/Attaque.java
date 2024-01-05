@@ -3,20 +3,16 @@ package fr.adsa.actions;
 import fr.adsa.interfaces.IAttaque;
 import fr.adsa.interfaces.ICombattant;
 
-import java.util.Scanner;
-
-public class BasicAttaque implements IAttaque{
+public class Attaque implements IAttaque{
     public int degats;
     public double chanceToucher;
     public String nom;
 
-    public BasicAttaque(String nom, int degats, double chanceToucher) {
+    public Attaque(String nom, int degats, double chanceToucher) {
         this.degats = degats;
         this.nom = nom;
         this.chanceToucher = chanceToucher;
     }
-
-
 
     public int getDegats() {
         return degats;
@@ -63,7 +59,7 @@ public class BasicAttaque implements IAttaque{
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("BasicAttaque{");
+        final StringBuilder sb = new StringBuilder("Attaque{");
         sb.append("degats=").append(degats);
         sb.append(", chanceToucher=").append(chanceToucher);
         sb.append(", nom='").append(nom).append('\'');

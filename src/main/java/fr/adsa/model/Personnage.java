@@ -20,6 +20,8 @@ public class Personnage extends Combattant {
     public Personnage(String nom, int pdv, Classe classe) {
         super(nom, pdv);
         this.classe = classe;
+        this.crit = 15.0;
+        this.critDamage = 50.0;
     }
 
     @Override
@@ -31,8 +33,13 @@ public class Personnage extends Combattant {
             System.out.println(i + " - " + classe.getAttaques().get(i).getNom());
         }
         choix = sc.nextInt();
-        int degats = classe.getAttaques().get(choix).lancerAttaque(this, cible);
-        cible.setPdv(cible.getPdv() - degats);
+        // gerer les crit
+        double random = Math.random() * 100;
+        if (random <= this.crit) {
+            System.out.println("Coup critique !");
+            classe.getAttaques().get(choix).setDegats((int) (classe.getAttaques().get(choix).getDegats() * (1 + this.critDamage / 100)));
+        }
+        classe.getAttaques().get(choix).lancerAttaque(this, cible);
     }
 
     @Override

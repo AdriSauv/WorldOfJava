@@ -6,6 +6,8 @@ public abstract class Combattant implements ICombattant {
     public String nom;
     public int pdv;
     public int degats;
+    public double crit;
+    public double critDamage;
 
     public Combattant() {
     }
@@ -56,6 +58,22 @@ public abstract class Combattant implements ICombattant {
 
     public void setDegats(int degats) {
         this.degats = degats;
+    }
+
+    public double getCrit() {
+        return crit;
+    }
+
+    public void setCrit(double crit) {
+        this.crit = crit;
+    }
+
+    public double getCritDamage() {
+        return critDamage;
+    }
+
+    public void setCritDamage(double critDamage) {
+        this.critDamage = critDamage;
     }
 
     @Override
