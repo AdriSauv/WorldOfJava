@@ -12,15 +12,17 @@ public abstract class Combattant implements ICombattant {
     public Combattant() {
     }
 
-    public Combattant(String nom, int pdv) {
-        this.nom = nom;
-        this.pdv = pdv;
-    }
-
     public Combattant(String nom, int pdv, int degats) {
         this.nom = nom;
         this.pdv = pdv;
         this.degats = degats;
+    }
+
+    public Combattant(String nom, int pdv, double crit, double critDamage) {
+        this.nom = nom;
+        this.pdv = pdv;
+        this.crit = 15.0;
+        this.critDamage = 50.0;
     }
 
 

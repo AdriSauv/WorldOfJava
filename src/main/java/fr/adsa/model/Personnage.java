@@ -17,11 +17,9 @@ public class Personnage extends Combattant {
         super();
     }
 
-    public Personnage(String nom, int pdv, Classe classe) {
-        super(nom, pdv);
+    public Personnage(String nom, int pdv, Classe classe, double crit, double critDamage) {
+        super(nom, pdv, crit, critDamage);
         this.classe = classe;
-        this.crit = 15.0;
-        this.critDamage = 50.0;
     }
 
     @Override

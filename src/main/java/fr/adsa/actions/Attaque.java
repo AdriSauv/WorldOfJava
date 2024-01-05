@@ -48,7 +48,6 @@ public class Attaque implements IAttaque{
             return 0;
         }
     }
-
     private boolean toucheAttaque() {
         int randInt = (int) (Math.random() * 100);
         return randInt <= this.chanceToucher;
@@ -75,9 +74,6 @@ public class Attaque implements IAttaque{
     private void afficherRate(ICombattant lanceur, ICombattant cible) {
         System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " avec " + this.nom + " mais rate son attaque");
     }
-
-
-
 
     @Override
     public String getNom() {
