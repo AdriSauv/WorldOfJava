@@ -33,20 +33,40 @@ public class Attaque implements IAttaque{
     }
 
     @Override
+    public void setDegats(double degats) {
+        this.degats = (int) degats;
+    }
+
+    @Override
     public int lancerAttaque(ICombattant lanceur, ICombattant cible) {
         int randInt = (int) (Math.random() * 100);
-        int damage = 0;
-        if (randInt <= this.chanceToucher){
-            damage = this.degats;
-            System.out.println(lanceur.getNom() + " attaque " + cible.getNom() +
-                    " avec " + this.nom + " et lui inflige " + this.degats + " degats");
-            cible.defendre(this.degats);
-            System.out.println(cible.getNom() + " a " + (cible.getPdv()) + " pdv");
+        int damage;
+
+        if (randInt <= this.chanceToucher) {
+            double randomCrit = Math.random() * 100;
+
+            if (randomCrit <= lanceur.getCrit()) {
+                // Critical hit
+                damage = (int) (this.degats * (1 + lanceur.getCritDamage() / 100));
+                System.out.println("Coup critique !");
+            } else {
+                // Normal hit
+                damage = this.degats;
+            }
+
+            System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " avec " + this.nom + " et inflige " + damage + " degats");
+            cible.defendre(damage);
+            System.out.println(cible.getNom() + " a " + cible.getPdv() + " pdv");
         } else {
+            // Missed hit
             System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " avec " + this.nom + " mais rate son attaque");
+            damage = 0; // Set damage to 0 for a missed hit
         }
+
         return damage;
     }
+
+
 
     @Override
     public String getNom() {

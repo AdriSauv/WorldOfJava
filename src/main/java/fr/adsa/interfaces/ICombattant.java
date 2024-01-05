@@ -5,15 +5,17 @@ import fr.adsa.classes.Classe;
 import java.util.Map;
 
 public interface ICombattant {
-    public void attaquer(ICombattant cible);
-    public void defendre(int degats);
+    void attaquer(ICombattant cible);
+    void defendre(int degats);
 
     // Getters et setters
-    public String getNom();
-    public int getDegats();
-    public int getPdv();
-    public void setNom(String nom);
-    public void setDegats(int degats);
-    public void setPdv(int pdv);
-    public boolean estMort();
+    String getNom();
+    int getDegats();
+    int getPdv();
+    void setNom(String nom);
+    void setDegats(int degats);
+    void setPdv(int pdv);
+    boolean estMort();
+    double getCrit();
+    double getCritDamage();
 }

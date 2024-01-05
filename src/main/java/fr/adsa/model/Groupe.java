@@ -100,4 +100,20 @@ public class Groupe implements ICombattant {
         }
         return true;
     }
+
+    /**
+     * @return
+     */
+    @Override
+    public double getCrit() {
+        return 0;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public double getCritDamage() {
+        return 0;
+    }
 }

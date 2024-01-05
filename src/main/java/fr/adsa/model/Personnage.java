@@ -33,12 +33,6 @@ public class Personnage extends Combattant {
             System.out.println(i + " - " + classe.getAttaques().get(i).getNom());
         }
         choix = sc.nextInt();
-        // gerer les crit
-        double random = Math.random() * 100;
-        if (random <= this.crit) {
-            System.out.println("Coup critique !");
-            classe.getAttaques().get(choix).setDegats((int) (classe.getAttaques().get(choix).getDegats() * (1 + this.critDamage / 100)));
-        }
         classe.getAttaques().get(choix).lancerAttaque(this, cible);
     }
 
