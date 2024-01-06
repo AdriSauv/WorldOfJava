@@ -33,10 +33,7 @@ public class Classe {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Classe{");
-        sb.append("nom='").append(nom).append('\'');
-        sb.append(", attaques=").append(attaques);
-        sb.append('}');
-        return sb.toString();
+        String str = nom;
+        return str;
     }
 }
