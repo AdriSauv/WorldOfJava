@@ -36,11 +36,12 @@ public class Monde {
 
     public static Personnage personnageFactory() {
         getDictionnaire();
-        System.out.println("Veuillez saisir le nom du personnage : ");
+        System.out.println("------------- Création du personnage -------------");
+        System.out.println("Nom du personnage : ");
         sc.nextLine();
         String nom = sc.nextLine();
 
-        System.out.println("Veuillez choisir une classe : ");
+        System.out.println("Choisir une classe : ");
         for (String key : dictionnaire.keySet()) {
             System.out.println(key);
         }
