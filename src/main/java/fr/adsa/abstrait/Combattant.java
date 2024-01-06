@@ -65,7 +65,6 @@ public abstract class Combattant implements ICombattant {
     public String toString() {
         String sb = "Combattant{" + "nom='" + nom + '\'' +
                 ", pdv=" + pdv +
-                ", degats=" + degats +
                 '}';
         return sb;
     }
