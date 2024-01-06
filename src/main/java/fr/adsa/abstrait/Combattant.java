@@ -18,7 +18,7 @@ public abstract class Combattant implements ICombattant {
         this.degats = degats;
     }
 
-    public Combattant(String nom, int pdv, double crit, double critDamage) {
+    public Combattant(String nom, int pdv) {
         this.nom = nom;
         this.pdv = pdv;
         this.crit = 15.0;
@@ -80,12 +80,11 @@ public abstract class Combattant implements ICombattant {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Combattant{");
-        sb.append("nom='").append(nom).append('\'');
-        sb.append(", pdv=").append(pdv);
-        sb.append(", degats=").append(degats);
-        sb.append('}');
-        return sb.toString();
+        String sb = "Combattant{" + "nom='" + nom + '\'' +
+                ", pdv=" + pdv +
+                ", degats=" + degats +
+                '}';
+        return sb;
     }
 
 }

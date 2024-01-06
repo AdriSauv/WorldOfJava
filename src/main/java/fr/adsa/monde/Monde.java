@@ -46,7 +46,8 @@ public class Monde {
         }
         String classe = sc.nextLine();
         Classe classeChoisie = getClasse(classe);
-        return new Personnage(nom, 100, classeChoisie);
+        return new Personnage(nom, 100, classeChoisie);1
+
     }
 
     public static Monstre monstreFactory() {

@@ -17,8 +17,8 @@ public class Personnage extends Combattant {
         super();
     }
 
-    public Personnage(String nom, int pdv, Classe classe, double crit, double critDamage) {
-        super(nom, pdv, crit, critDamage);
+    public Personnage(String nom, int pdv, Classe classe) {
+        super(nom, pdv);
         this.classe = classe;
     }
 
@@ -52,7 +52,6 @@ public class Personnage extends Combattant {
         final StringBuilder sb = new StringBuilder("Personnage{");
         sb.append("nom='").append(nom).append('\'');
         sb.append(", pdv=").append(pdv);
-        sb.append(", degats=").append(degats);
         sb.append(", classe=").append(classe);
         sb.append('}');
         return sb.toString();
