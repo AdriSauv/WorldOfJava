@@ -32,11 +32,6 @@ public class Personnage extends Combattant {
         classe.getAttaques().get(choix).lancerAttaque(this, cible);
     }
 
-    @Override
-    public boolean estMort() {
-        return this.pdv <= 0;
-    }
-
     public Classe getClasse() {
         return classe;
     }
@@ -47,11 +42,10 @@ public class Personnage extends Combattant {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Personnage{");
-        sb.append("nom='").append(nom).append('\'');
-        sb.append(", pdv=").append(pdv);
-        sb.append(", classe=").append(classe);
-        sb.append('}');
-        return sb.toString();
+        String sb = "Personnage{" + "nom='" + nom + '\'' +
+                ", pdv=" + pdv +
+                ", classe=" + classe +
+                '}';
+        return sb;
     }
 }

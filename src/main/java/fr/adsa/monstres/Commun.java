@@ -6,7 +6,7 @@ import fr.adsa.interfaces.IAttaque;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Commun extends Monstre {
+public class Commun extends Rarity {
 
     static String[] noms = {"Rat", "Chauve-souris", "Loup", "Sanglier", "Araignée"};
 

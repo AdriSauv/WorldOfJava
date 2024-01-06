@@ -19,7 +19,6 @@ public abstract class Combattant implements ICombattant {
         this.critDamage = 50.0;
     }
 
-
     // methode attaquer qui utilise le getAttaque de la classe classe
     @Override
     public void attaquer(ICombattant cible) {
@@ -31,9 +30,16 @@ public abstract class Combattant implements ICombattant {
     public void defendre(int degats){
         this.pdv -= degats;
     }
+
+    public boolean estMort() {
+        return this.pdv <= 0;
+    }
+
+    // getters et setters
     public String getNom() {
         return nom;
     }
+
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -68,5 +74,4 @@ public abstract class Combattant implements ICombattant {
                 '}';
         return sb;
     }
-
 }

@@ -8,7 +8,7 @@ import fr.adsa.model.Ennemie;
 import fr.adsa.model.Groupe;
 import fr.adsa.model.Personnage;
 import fr.adsa.monstres.Commun;
-import fr.adsa.monstres.Monstre;
+import fr.adsa.monstres.Rarity;
 
 import java.util.*;
 
@@ -17,7 +17,7 @@ import static java.lang.Thread.sleep;
 public class Monde {
     static Scanner sc = new Scanner(System.in);
     public static Map<String, Classe> classeDictionnaire = new HashMap<>();
-    public static Map<String, Monstre> monstreDictionary = new HashMap<>();
+    public static Map<String, Rarity> monstreDictionary = new HashMap<>();
 
     // creer des classes et les ajouter dans le dictionnaire
     public static Map<String, Classe> getDictionnaire(){
@@ -31,9 +31,9 @@ public class Monde {
     }
 
     // creer des monstres et les ajouter dans le dictionnaire
-    public static Map<String, Monstre> getMonstreDictionnaire(){
+    public static Map<String, Rarity> getMonstreDictionnaire(){
         if(monstreDictionary.isEmpty()){
-            Monstre commun = new Commun();
+            Rarity commun = new Commun();
             monstreDictionary.put(commun.getNom(), commun);
         }
         return monstreDictionary;
@@ -43,7 +43,7 @@ public class Monde {
         return classeDictionnaire.get(nom);
     }
 
-    public static Monstre getMonstre(String nom) {
+    public static Rarity getMonstre(String nom) {
         return monstreDictionary.get(nom);
     }
 
@@ -69,8 +69,8 @@ public class Monde {
         // Création aléatoire d'un ennemie
         int random = randomInt(monstreDictionary.size());
         String nom = (String) monstreDictionary.keySet().toArray()[random];
-        Monstre monstre = getMonstre(nom);
-        return new Ennemie(nom, 100, monstre);
+        Rarity rarity = getMonstre(nom);
+        return new Ennemie(nom, 100, rarity);
     }
 
     //Récupere les infos du personnage et les affiches
@@ -115,7 +115,7 @@ public class Monde {
         System.out.println("|------------ Menu ------------|");
         System.out.println("| 1 - Combat 1v1                |");
         System.out.println("| 2 - Combat de groupe          |");
-        System.out.println("| 3 - Combat 1vAll              |");
+        System.out.println("| 3 - Mode Donjon               |");
         System.out.println("| 4 - Informations              |");
         System.out.println("| 5 - Quitter                   |");
         System.out.println("|-------------------------------|");
@@ -130,7 +130,7 @@ public class Monde {
                 combatGroupe();
                 break;
             case 3:
-                combat1vAll();
+                donjon();
                 break;
             case 4:
                 informations();
@@ -158,7 +158,7 @@ public class Monde {
         //TODO
     }
 
-    public static void combat1vAll(){
+    public static void donjon(){
         //TODO
     }
 

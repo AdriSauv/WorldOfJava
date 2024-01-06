@@ -5,11 +5,11 @@ import fr.adsa.interfaces.IAttaque;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Monstre {
+public class Rarity {
     private String nom;
     private List<IAttaque> attaques = new ArrayList<>();
 
-    public Monstre(String nom, List<IAttaque> attaques) {
+    public Rarity(String nom, List<IAttaque> attaques) {
         this.nom = nom;
         this.attaques = attaques;
     }
