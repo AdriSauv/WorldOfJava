@@ -7,15 +7,13 @@ import fr.adsa.interfaces.ICombattant;
 import java.util.Scanner;
 
 /**
- * classe abstraite Personnage qui contient un nom, des pdv, des degats
+ * classe abstraite Personnage qui contient un nom, des pdv et une classe
+ * elle implemente la classe abstraite Combattant
+ * elle contient les methodes attaquer et estMort
  */
 public class Personnage extends Combattant {
 
     private Classe classe;
-
-    public Personnage() {
-        super();
-    }
 
     public Personnage(String nom, int pdv, Classe classe) {
         super(nom, pdv);

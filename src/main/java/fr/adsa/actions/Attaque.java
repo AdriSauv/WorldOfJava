@@ -48,12 +48,13 @@ public class Attaque implements IAttaque{
             return 0;
         }
     }
-    private boolean toucheAttaque() {
+
+    public boolean toucheAttaque() {
         int randInt = (int) (Math.random() * 100);
         return randInt <= this.chanceToucher;
     }
 
-    private int calculerDegats(ICombattant lanceur) {
+    public int calculerDegats(ICombattant lanceur) {
         double randomCrit = Math.random() * 100;
         if (randomCrit <= lanceur.getCrit()) {
             // Critical hit
@@ -65,13 +66,13 @@ public class Attaque implements IAttaque{
         }
     }
 
-    private void afficherResultat(ICombattant lanceur, ICombattant cible, int damage) {
+    public void afficherResultat(ICombattant lanceur, ICombattant cible, int damage) {
         System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " avec " + this.nom + " et inflige " + damage + " degats");
         cible.defendre(damage);
         System.out.println(cible.getNom() + " a " + cible.getPdv() + " pdv");
     }
 
-    private void afficherRate(ICombattant lanceur, ICombattant cible) {
+    public void afficherRate(ICombattant lanceur, ICombattant cible) {
         System.out.println(lanceur.getNom() + " attaque " + cible.getNom() + " avec " + this.nom + " mais rate son attaque");
     }
 

@@ -1,13 +1,17 @@
 package fr.adsa.interfaces;
 
 public interface IAttaque {
-    public int lancerAttaque(ICombattant lanceur, ICombattant cible);
+    int lancerAttaque(ICombattant lanceur, ICombattant cible);
+    boolean toucheAttaque();
+    int calculerDegats(ICombattant lanceur);
+    void afficherResultat(ICombattant lanceur, ICombattant cible, int damage);
+    void afficherRate(ICombattant lanceur, ICombattant cible);
 
     //Getteurs et setteurs
-    public String getNom();
-    public double getChanceToucher();
-    public void setNom(String nom);
-    public void setChanceToucher(double chanceToucher);
-    public void setDegats(double degats);
-    public int getDegats();
+    String getNom();
+    double getChanceToucher();
+    void setNom(String nom);
+    void setChanceToucher(double chanceToucher);
+    void setDegats(double degats);
+    int getDegats();
 }

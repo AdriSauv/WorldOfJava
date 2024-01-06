@@ -4,9 +4,11 @@ import fr.adsa.abstrait.Combattant;
 import fr.adsa.classes.Classe;
 import fr.adsa.classes.Mage;
 import fr.adsa.classes.Voleur;
+import fr.adsa.model.Ennemie;
 import fr.adsa.model.Groupe;
-import fr.adsa.model.Monstre;
 import fr.adsa.model.Personnage;
+import fr.adsa.monstres.Commun;
+import fr.adsa.monstres.Monstre;
 
 import java.util.*;
 
@@ -14,24 +16,35 @@ import static java.lang.Thread.sleep;
 
 public class Monde {
     static Scanner sc = new Scanner(System.in);
-    public static Map<String, Classe> dictionnaire = new HashMap<>();
-    public static List<Monstre> monstres = new ArrayList<>();
-    public static String[] fName = {"Goblin", "Orc", "Troll", "Golem", "Dragon"};
-    public static String[] lName = {"de feu", "de glace", "de terre", "de lave", "de foudre"};
+    public static Map<String, Classe> classeDictionnaire = new HashMap<>();
+    public static Map<String, Monstre> monstreDictionary = new HashMap<>();
 
     // creer des classes et les ajouter dans le dictionnaire
     public static Map<String, Classe> getDictionnaire(){
-        if(dictionnaire.isEmpty()){
+        if(classeDictionnaire.isEmpty()){
             Classe mage = new Mage();
-            dictionnaire.put(mage.getNom(), mage);
+            classeDictionnaire.put(mage.getNom(), mage);
             Classe voleur = new Voleur();
-            dictionnaire.put(voleur.getNom(), voleur);
+            classeDictionnaire.put(voleur.getNom(), voleur);
         }
-        return dictionnaire;
+        return classeDictionnaire;
+    }
+
+    // creer des monstres et les ajouter dans le dictionnaire
+    public static Map<String, Monstre> getMonstreDictionnaire(){
+        if(monstreDictionary.isEmpty()){
+            Monstre commun = new Commun();
+            monstreDictionary.put(commun.getNom(), commun);
+        }
+        return monstreDictionary;
     }
 
     public static Classe getClasse(String nom) {
-        return dictionnaire.get(nom);
+        return classeDictionnaire.get(nom);
+    }
+
+    public static Monstre getMonstre(String nom) {
+        return monstreDictionary.get(nom);
     }
 
     public static Personnage personnageFactory() {
@@ -42,7 +55,7 @@ public class Monde {
         String nom = sc.nextLine();
 
         System.out.println("Choisir une classe : ");
-        for (String key : dictionnaire.keySet()) {
+        for (String key : classeDictionnaire.keySet()) {
             System.out.println(key);
         }
         String classe = sc.nextLine();
@@ -51,9 +64,13 @@ public class Monde {
 
     }
 
-    public static Monstre monstreFactory() {
-        String nom = fName[new Random().nextInt(fName.length)] + " " + lName[new Random().nextInt(lName.length)];
-        return new Monstre(nom, 100, 10);
+    public static Ennemie ennemieFactory(){
+        getMonstreDictionnaire();
+        // Création aléatoire d'un ennemie
+        int random = randomInt(monstreDictionary.size());
+        String nom = (String) monstreDictionary.keySet().toArray()[random];
+        Monstre monstre = getMonstre(nom);
+        return new Ennemie(nom, 100, monstre);
     }
 
     //Récupere les infos du personnage et les affiches
@@ -62,7 +79,7 @@ public class Monde {
     }
 
     //Creation d'une méthode combat qui prend en parametre un personnage et un monstre à tour de role
-    public static void combat(Personnage personnage, Monstre monstre) throws InterruptedException {
+    public static void combat(Personnage personnage, Ennemie monstre) throws InterruptedException {
         while (!personnage.estMort() && !monstre.estMort()) {
             personnage.attaquer(monstre);
             sleep(2000);
@@ -79,22 +96,6 @@ public class Monde {
         } else {
             System.out.println( monstre.getNom() + " est mort. " + personnage.getNom() + " a gagné");
         }
-    }
-
-    //Initialiser une liste de 15 monstres
-    public static void initMonstres(){
-        for(int i = 0; i < 30; i++){
-            monstres.add(monstreFactory());
-        }
-    }
-
-    public static Groupe createMonstreGroupe(int nbMonstres) {
-        initMonstres();
-        Groupe groupe = new Groupe();
-        for (int i = 0; i < nbMonstres; i++) {
-            groupe.addCombattant(monstreFactory());
-        }
-        return groupe;
     }
 
     public static Groupe createPersonnageGroupe(int nbPersonnages) {
@@ -147,70 +148,26 @@ public class Monde {
 
     public static void combat1v1() throws InterruptedException {
         Personnage p = personnageFactory();
-        Monstre monstre = monstreFactory();
+        Ennemie monstre = ennemieFactory();
         afficherInfos(p);
         afficherInfos(monstre);
         combat(p, monstre);
     }
 
     public static void combatGroupe(){
-        System.out.println("Combien de personnages voulez-vous créer ?");
-        int nbPersonnages = sc.nextInt();
-        Groupe groupePersonnages = createPersonnageGroupe(nbPersonnages);
-        System.out.println("Combien de monstres voulez-vous créer ?");
-        int nbMonstres = sc.nextInt();
-        Groupe groupeMonstres = createMonstreGroupe(nbMonstres);
-        while (!groupePersonnages.estMort() && !groupeMonstres.estMort()) {
-            boolean turn = new Random().nextBoolean();
-            if (turn) {
-                groupePersonnages.attaquer(groupeMonstres);
-            } else {
-                groupeMonstres.attaquer(groupePersonnages);
-            }
-        }
-        if (groupePersonnages.estMort()) {
-            System.out.println("Les personnages sont morts. Les monstres ont gagné");
-        } else {
-            System.out.println("Les monstres sont morts. Les personnages ont gagné");
-        }
+        //TODO
     }
 
     public static void combat1vAll(){
-        Personnage p = personnageFactory();
-        System.out.println("Combien de monstres voulez-vous créer ?");
-        int nbMonstres = sc.nextInt();
-        Groupe groupeMonstres = createMonstreGroupe(nbMonstres);
-        afficherInfos(p);
-        while (!p.estMort() && !groupeMonstres.estMort()) {
-            boolean turn = new Random().nextBoolean();
-            if (turn) {
-                p.attaquer(groupeMonstres);
-            } else {
-                groupeMonstres.attaquer(p);
-            }
-        }
-        if (p.estMort()) {
-            System.out.println("Le personnage est mort. Les monstres ont gagné");
-        } else {
-            System.out.println("Les monstres sont morts. Le personnage a gagné");
-        }
+        //TODO
     }
 
     /**
-     * Affiche les informations sur les classes disponibles
-     * les attaques disponibles selon la classe
-     * et les monstres
+     * Affiche les informations sur les classes disponibles ainsi que leurs attaques
+     * infos sur les différentes raretés des monstres
      * @return void
      */
     public static void informations(){
-        System.out.println("Informations : ");
-        System.out.println("Classes disponibles : ");
-        for (String key : dictionnaire.keySet()) {
-            System.out.println(key);
-        }
-        System.out.println("Attaques disponibles : ");
-        for(String key : dictionnaire.keySet()){
-            System.out.println(key + " : " + dictionnaire.get(key).getAttaques());
-        }
+        //TODO
     }
 }

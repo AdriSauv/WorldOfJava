@@ -12,12 +12,6 @@ public abstract class Combattant implements ICombattant {
     public Combattant() {
     }
 
-    public Combattant(String nom, int pdv, int degats) {
-        this.nom = nom;
-        this.pdv = pdv;
-        this.degats = degats;
-    }
-
     public Combattant(String nom, int pdv) {
         this.nom = nom;
         this.pdv = pdv;
@@ -37,47 +31,36 @@ public abstract class Combattant implements ICombattant {
     public void defendre(int degats){
         this.pdv -= degats;
     }
-
     public String getNom() {
         return nom;
     }
-
     public void setNom(String nom) {
         this.nom = nom;
     }
-
     public int getPdv() {
         return pdv;
     }
-
     public void setPdv(int pdv) {
         this.pdv = pdv;
     }
-
     public int getDegats() {
         return degats;
     }
-
     public void setDegats(int degats) {
         this.degats = degats;
     }
-
     public double getCrit() {
         return crit;
     }
-
     public void setCrit(double crit) {
         this.crit = crit;
     }
-
     public double getCritDamage() {
         return critDamage;
     }
-
     public void setCritDamage(double critDamage) {
         this.critDamage = critDamage;
     }
-
     @Override
     public String toString() {
         String sb = "Combattant{" + "nom='" + nom + '\'' +

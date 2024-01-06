@@ -25,16 +25,6 @@ public class Groupe implements ICombattant {
         return combattant;
     }
 
-    public void attaquerGroupe(Groupe groupeCible){
-        ICombattant cible = groupeCible.defendre();
-        ICombattant attaquant = this.attaquer();
-        if(attaquant instanceof Personnage){
-            attaquant = (Personnage) attaquant;
-        }else{
-            attaquant = (Monstre) attaquant;
-        }
-    }
-
     @Override
     public void attaquer(ICombattant cible) {
         //choisi un combattant au hasard
