@@ -20,23 +20,21 @@ public class Monde {
     public static Map<String, Rarity> monstreDictionary = new HashMap<>();
 
     // creer des classes et les ajouter dans le dictionnaire
-    public static Map<String, Classe> getDictionnaire(){
+    public static void getDictionnaire(){
         if(classeDictionnaire.isEmpty()){
             Classe mage = new Mage();
             classeDictionnaire.put(mage.getNom(), mage);
             Classe voleur = new Voleur();
             classeDictionnaire.put(voleur.getNom(), voleur);
         }
-        return classeDictionnaire;
     }
 
     // creer des monstres et les ajouter dans le dictionnaire
-    public static Map<String, Rarity> getMonstreDictionnaire(){
+    public static void getMonstreDictionnaire(){
         if(monstreDictionary.isEmpty()){
             Rarity commun = new Commun();
             monstreDictionary.put(commun.getNom(), commun);
         }
-        return monstreDictionary;
     }
 
     public static Classe getClasse(String nom) {
@@ -49,7 +47,7 @@ public class Monde {
 
     public static Personnage personnageFactory() {
         getDictionnaire();
-        System.out.println("------------- Création du personnage -------------");
+        System.out.println("------------- Selection du personnage -------------");
         System.out.println("Nom du personnage : ");
         sc.nextLine();
         String nom = sc.nextLine();
@@ -165,7 +163,7 @@ public class Monde {
     /**
      * Affiche les informations sur les classes disponibles ainsi que leurs attaques
      * infos sur les différentes raretés des monstres
-     * @return void
+     *
      */
     public static void informations(){
         //TODO

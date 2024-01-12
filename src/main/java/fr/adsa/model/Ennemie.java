@@ -6,7 +6,7 @@ import fr.adsa.monstres.Rarity;
 
 public class Ennemie extends Combattant {
 
-    private Rarity rarity;
+    private final Rarity rarity;
 
     public Ennemie(String nom, int pdv, Rarity rarity) {
         super(nom, pdv);
