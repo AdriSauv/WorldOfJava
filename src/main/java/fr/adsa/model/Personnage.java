@@ -2,6 +2,7 @@ package fr.adsa.model;
 
 import fr.adsa.abstrait.Combattant;
 import fr.adsa.classes.Classe;
+import fr.adsa.classes.Mage;
 import fr.adsa.interfaces.ICombattant;
 
 import java.util.Scanner;
