@@ -18,7 +18,7 @@ public class Commun extends Rarity {
         List<IAttaque> attaques = new ArrayList<>();
         Attaque morsure = new Attaque("Morsure", 5, 90);
         attaques.add(morsure);
-        Attaque griffe = new Attaque("Griffe", 3, 100);
+        Attaque griffe = new Attaque("Griffe", 3, 95);
         attaques.add(griffe);
         return attaques;
     }

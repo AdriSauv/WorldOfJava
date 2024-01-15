@@ -21,6 +21,11 @@ public class Personnage extends Combattant {
         this.classe = classe;
     }
 
+    public Personnage(String nom, int pdv, int degats, Classe classe) {
+        super(nom, pdv, degats);
+        this.classe = classe;
+    }
+
     @Override
     public void attaquer(ICombattant cible) {
         Scanner sc = new Scanner(System.in);
