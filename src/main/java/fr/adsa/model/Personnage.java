@@ -21,6 +21,11 @@ public class Personnage extends Combattant {
         this.classe = classe;
     }
 
+    //Constructeur pour les tests
+    public Personnage(String nom, int pdv){
+        super(nom, pdv);
+    }
+
     public Personnage(String nom, int pdv, int degats, Classe classe) {
         super(nom, pdv, degats);
         this.classe = classe;

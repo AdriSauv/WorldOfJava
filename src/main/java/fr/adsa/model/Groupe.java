@@ -41,6 +41,22 @@ public class Groupe implements ICombattant {
         combattant.defendre(degats);
     }
 
+    /**
+     * @param soin
+     */
+    @Override
+    public void soin(int soin) {
+
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public int pdvMax() {
+        return 0;
+    }
+
     @Override
     public String getNom() {
         return null;

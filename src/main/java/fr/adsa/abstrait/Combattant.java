@@ -38,6 +38,9 @@ public abstract class Combattant implements ICombattant {
     @Override
     public void soin(int soin) {
         this.pdv += soin;
+        if (this.pdv > 100) {
+            this.pdv = 100;
+        }
         System.out.println(this.nom + " se soigne de " + soin + " pdv");
         System.out.println(this.nom + " a " + this.pdv + " pdv");
     }
@@ -62,7 +65,7 @@ public abstract class Combattant implements ICombattant {
         return pdv;
     }
     public void setPdv(int pdv) {
-        this.pdv = Math.min(pdv, getPdv());
+        this.pdv = pdv;
     }
     public int getDegats() {
         return degats;
