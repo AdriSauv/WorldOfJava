@@ -35,6 +35,13 @@ public abstract class Combattant implements ICombattant {
         System.out.println(cible.getNom() + " a " + cible.getPdv() + " pdv");
     }
 
+    @Override
+    public void soin(int soin) {
+        this.pdv += soin;
+        System.out.println(this.nom + " se soigne de " + soin + " pdv");
+        System.out.println(this.nom + " a " + this.pdv + " pdv");
+    }
+
     public void defendre(int degats){
         this.pdv -= degats;
     }
@@ -55,7 +62,7 @@ public abstract class Combattant implements ICombattant {
         return pdv;
     }
     public void setPdv(int pdv) {
-        this.pdv = pdv;
+        this.pdv = Math.min(pdv, getPdv());
     }
     public int getDegats() {
         return degats;

@@ -7,6 +7,7 @@ import java.util.Map;
 public interface ICombattant {
     void attaquer(ICombattant cible);
     void defendre(int degats);
+    void soin(int soin);
 
     // Getters et setters
     String getNom();
